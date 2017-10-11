@@ -4,13 +4,21 @@
   "description": "events API layer on top of streamdata",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard . && budo test.js"
   },
-  "keywords": [],
-  "author": "Jake Burden <jake@doge.haus>",
+  "keywords": [
+    "steamdata",
+    "api",
+    "events"
+  ],
+  "author": "Jake Burden <jake@doge.haus> <@o91tsjBgL0l0zs475aRWYSAXFxvirZS7VrXmirY/msI=.ed25519>",
   "license": "ISC",
   "dependencies": {
     "fast-json-patch": "^2.0.5",
     "streamdataio-js-sdk": "^2.0.1"
+  },
+  "devDependencies": {
+    "budo": "^10.0.4",
+    "standard": "^10.0.3"
   }
 }

@@ -5,7 +5,6 @@ var key = 'ODRlZDNmYmUtMDAxZC00NWJmLTgwMzQtNTkzMWJiYjFhYjVj'
 
 var SSE = streamdata(url, key)
 
-
 SSE
   .on('data', function (data) {
     console.log('data', data)
