@@ -12,7 +12,7 @@
     "events"
   ],
   "author": "Jake Burden <jake@doge.haus> <@o91tsjBgL0l0zs475aRWYSAXFxvirZS7VrXmirY/msI=.ed25519>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "fast-json-patch": "^2.0.5",
     "streamdataio-js-sdk": "^2.0.1"
