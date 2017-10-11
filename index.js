@@ -5,7 +5,6 @@ var applyReducer = require('fast-json-patch').applyReducer
 
 function Streamdata (url, key) {
   if (!(this instanceof Streamdata)) return new Streamdata(url, key)
-  console.log('dad?')
   var self = this
 
   this.streamd = streamdataio.createEventSource(url, key)
