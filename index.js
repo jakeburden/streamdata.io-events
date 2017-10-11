@@ -34,8 +34,6 @@ function Streamdata (url, key) {
   this.on('open', function () {
     this.streamd.open()
   })
-
-  // return this
 }
 
 util.inherits(Streamdata, events.EventEmitter)
