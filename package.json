@@ -1,17 +1,14 @@
 {
   "name": "streamdata.io-events",
   "version": "1.0.0",
-  "description": "",
+  "description": "events API layer on top of streamdata",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jake Burden <jake@doge.haus>",
   "license": "ISC",
-  "devDependencies": {
-    "browserify": "^14.4.0"
-  },
   "dependencies": {
     "fast-json-patch": "^2.0.5",
     "streamdataio-js-sdk": "^2.0.1"

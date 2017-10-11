@@ -35,13 +35,17 @@ function Streamdata (url, key) {
     this.streamd.open()
   })
 
-  return this
+  // return this
 }
 
 util.inherits(Streamdata, events.EventEmitter)
 
 Streamdata.prototype.close = function () {
   this.streamd.close()
+}
+
+Streamdata.prototype.open = function () {
+  this.streamd.open()
 }
 
 module.exports = Streamdata
