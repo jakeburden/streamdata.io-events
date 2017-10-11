@@ -16,5 +16,5 @@ SSE
 
 // close SSE after 5 seconds 
 setTimeout(function () {
-  SSE.emit('close')
+  SSE.close()
 }, 5000)

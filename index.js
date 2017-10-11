@@ -1,42 +1,49 @@
 var events = require('events')
+var util = require('util')
 var streamdataio = require('streamdataio-js-sdk')
 var applyReducer = require('fast-json-patch').applyReducer
 
 function Streamdata (url, key) {
   if (!(this instanceof Streamdata)) return new Streamdata(url, key)
-  var bus = new events.EventEmitter()
+  console.log('dad?')
+  var self = this
 
-  var streamd = streamdataio.createEventSource(url, key)
-  streamd
+  this.streamd = streamdataio.createEventSource(url, key)
+  this.streamd
     .onData(function (data) {
       this.doc = data
-      bus.emit('data', data)
+      self.emit('data', data)
     })
     .onPatch(function (patch) {
-      bus.emit('patch', patch)
+      self.emit('patch', patch)
       this.doc = patch.reduce(applyReducer, this.doc)
-      bus.emit('data', this.doc)
+      self.emit('data', this.doc)
     })
     .onError(function (err) {
-      bus.emit('error', new Error(err))
+      self.emit('error', new Error(err))
     })
     .onOpen(function () {
-      bus.emit('opened')
+      self.emit('opened')
     })
 
-  streamd.open()
+  this.streamd.open()
 
-  bus.on('close', function () {
-    streamd.close()
+  this.on('close', function () {
+    this.streamd.close()
   })
 
-  bus.on('open', function () {
-    streamd.open()
+  this.on('open', function () {
+    this.streamd.open()
   })
 
-  return bus
+  return this
 }
 
+util.inherits(Streamdata, events.EventEmitter)
+
+Streamdata.prototype.close = function () {
+  this.streamd.close()
+}
 
 module.exports = Streamdata
 
