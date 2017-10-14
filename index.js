@@ -3,12 +3,12 @@ var util = require('util')
 var streamdataio = require('streamdataio-js-sdk')
 var applyReducer = require('fast-json-patch').applyReducer
 
-function Streamdata (url, key) {
-  if (!(this instanceof Streamdata)) return new Streamdata(url, key)
+function Streamdata (url, key, headers) {
+  if (!(this instanceof Streamdata)) return new Streamdata(url, key, headers)
   var self = this
 
-  this.streamd = streamdataio.createEventSource(url, key)
-  this.streamd
+  this._SSE = streamdataio.createEventSource(url, key, headers)
+  this._SSE
     .onData(function (data) {
       this.doc = data
       self.emit('data', data)
@@ -25,25 +25,25 @@ function Streamdata (url, key) {
       self.emit('opened')
     })
 
-  this.streamd.open()
+  this._SSE.open()
 
   this.on('close', function () {
-    this.streamd.close()
+    this._SSE.close()
   })
 
   this.on('open', function () {
-    this.streamd.open()
+    this._SSE.open()
   })
 }
 
 util.inherits(Streamdata, events.EventEmitter)
 
 Streamdata.prototype.close = function () {
-  this.streamd.close()
+  this._SSE.close()
 }
 
 Streamdata.prototype.open = function () {
-  this.streamd.open()
+  this._SSE.open()
 }
 
 module.exports = Streamdata
