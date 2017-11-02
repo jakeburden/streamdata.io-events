@@ -29,6 +29,7 @@ function Streamdata (url, key, headers) {
 
   this.on('close', function () {
     this._SSE.close()
+    this.emit('end')
   })
 
   this.on('open', function () {
@@ -39,11 +40,11 @@ function Streamdata (url, key, headers) {
 util.inherits(Streamdata, events.EventEmitter)
 
 Streamdata.prototype.close = function () {
-  this._SSE.close()
+  this.emit('close')
 }
 
 Streamdata.prototype.open = function () {
-  this._SSE.open()
+  this.emit('open')
 }
 
 module.exports = Streamdata
