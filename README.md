@@ -45,10 +45,11 @@ var SSE = streamdata(url, key)
 
 Occurs whenever a full JSON doc is available.  Is called when the SSE opens, and whenever a `JSON Patch` gets applied to the previous exisiting JSON doc. Uses `fast-json-patch` internally.
 
-
 ### `SSE.on('error', callback(err))`
 Occurs whenever the SSE returns an error, sends an `Error` object in the callback.
 
+### `SSE.on('end', callback())`
+Occurs when the SSE closes.
 
 ### `SSE.on('patch', callback(patch))`
 Occurs whenever a new patch becomes available. Use this if you want to have access to the patch directly. Normally you can just listen for the `data` event as it will pass you a patched JSON doc by using `fast-json-patch` internally.
