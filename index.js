@@ -5,7 +5,7 @@ var AuthStrategy = require('streamdataio-js-sdk-auth')
 var applyReducer = require('fast-json-patch').applyReducer
 
 function Streamdata (url, appToken, headers, privateKey) {
-  if (!(this instanceof Streamdata)) return new Streamdata(url, appToken, headers)
+  if (!(this instanceof Streamdata)) return new Streamdata(url, appToken, headers, privateKey)
   var self = this
 
   this._SSE = streamdataio.createEventSource(url, appToken, headers,
