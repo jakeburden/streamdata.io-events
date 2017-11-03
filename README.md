@@ -1,12 +1,11 @@
 # streamdata.io-events
 
-> events API layer on top of streamdata
+> events API layer on top of streamdata.io for Node.js and the browser
 
 Events based API layer around [`streamdataio-js-sdk`](https://github.com/streamdataio/streamdataio-js-sdk) that handles `JSON Patch` by using [`fast-json-patch`](https://github.com/Starcounter-Jack/JSON-Patch).
 
 ## Usage
 
-_note: this currently only works in the browser, would be cool to have it working in node.js soon!_
 
 ```js
 var streamdata = require('streamdata.io-events')
