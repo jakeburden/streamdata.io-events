@@ -3,6 +3,9 @@
   "version": "1.1.0",
   "description": "events API layer on top of streamdata",
   "main": "index.js",
+  "browser": {
+    "streamdataio-js-sdk/dist/bundles/streamdataio-node": "streamdataio-js-sdk"
+  },
   "scripts": {
     "test": "standard . && budo test.js"
   },
@@ -15,7 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "fast-json-patch": "^2.0.5",
-    "streamdataio-js-sdk": "^2.0.1"
+    "streamdataio-js-sdk": "^2.0.1",
+    "streamdataio-js-sdk-auth": "^2.0.0"
   },
   "devDependencies": {
     "budo": "^10.0.4",

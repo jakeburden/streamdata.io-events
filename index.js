@@ -1,13 +1,16 @@
 var events = require('events')
 var util = require('util')
-var streamdataio = require('streamdataio-js-sdk')
+var streamdataio = require('streamdataio-js-sdk/dist/bundles/streamdataio-node')
+var AuthStrategy = require('streamdataio-js-sdk-auth')
 var applyReducer = require('fast-json-patch').applyReducer
 
-function Streamdata (url, key, headers) {
-  if (!(this instanceof Streamdata)) return new Streamdata(url, key, headers)
+function Streamdata (url, appToken, headers, privateKey) {
+  if (!(this instanceof Streamdata)) return new Streamdata(url, appToken, headers)
   var self = this
 
-  this._SSE = streamdataio.createEventSource(url, key, headers)
+  this._SSE = streamdataio.createEventSource(url, appToken, headers,
+    AuthStrategy.newSignatureStrategy(appToken, privateKey))
+
   this._SSE
     .onData(function (data) {
       this.doc = data

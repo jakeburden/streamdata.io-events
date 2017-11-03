@@ -12,9 +12,9 @@ _note: this currently only works in the browser, would be cool to have it workin
 var streamdata = require('streamdata.io-events')
 
 var url = 'https://www.reddit.com/r/random.json?obey_over18=true'
-var key = 'API key from https://streamdata.io/' // 🔑
+var appToken = 'API key from https://streamdata.io/' // 🔑
 
-var SSE = streamdata(url, key)
+var SSE = streamdata(url, appToken)
 
 SSE
   .on('data', function (data) {
@@ -35,8 +35,15 @@ setTimeout(function () {
 
 ```js
 var streamdata = require('streamdata.io-events')
-var SSE = streamdata(url, key)
+var SSE = streamdata(url, appToken)
 ```
+
+### `var SSE = streamdata(url, appToken, headers, privateKey)`
+
+- url (string): http endpoint that you set streamdata to poll
+- appToken (string): Your public auth key from streamdata.io
+- headers (array) (optional): Array of optional headers such as `['header1: headervalue1', 'header2: headervalue2']`
+- privateKey (string) (optional): Your private auth key from streamdata.io if you chose to generate one
 
 `streamdata.io-events` is an event emitter!
 
