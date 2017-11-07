@@ -3,6 +3,7 @@ var util = require('util')
 var streamdataio = require('streamdataio-js-sdk/dist/bundles/streamdataio-node')
 var AuthStrategy = require('streamdataio-js-sdk-auth')
 var applyReducer = require('fast-json-patch').applyReducer
+var emitStream = require('emit-stream')
 
 function Streamdata (url, appToken, headers, privateKey) {
   if (!(this instanceof Streamdata)) return new Streamdata(url, appToken, headers, privateKey)
@@ -48,6 +49,13 @@ Streamdata.prototype.close = function () {
 
 Streamdata.prototype.open = function () {
   this.emit('open')
+}
+
+Streamdata.createReadStream = function (url, appToken, headers, privateKey) {
+  var SSE = Streamdata(url, appToken, headers, privateKey)
+  var stream = emitStream(SSE)
+
+  return stream
 }
 
 module.exports = Streamdata

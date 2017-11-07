@@ -1,4 +1,8 @@
 var streamdata = require('./')
+var JSONStream = require('JSONStream')
+process.stdout = require('browser-stdout')({
+  objectMode: true
+})
 
 var url = 'https://www.reddit.com/r/random.json?obey_over18=true'
 var key = 'ODRlZDNmYmUtMDAxZC00NWJmLTgwMzQtNTkzMWJiYjFhYjVj'
@@ -29,4 +33,9 @@ setTimeout(function () {
 // close SSE after 10 seconds
 setTimeout(function () {
   SSE.close()
+  // create a readable stream interface
+  var sse = streamdata.createReadStream(url, key)
+  sse
+    .pipe(JSONStream.parse('*[1]')) //'data.children[0].data.subreddit_name_prefixed'
+    .pipe(process.stdout)
 }, 10000)
